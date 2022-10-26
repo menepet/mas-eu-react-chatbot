@@ -1,6 +1,8 @@
 import React, { useCallback, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Welcome = () => {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
 
   const handleNameChange = useCallback(({target}) => {
@@ -9,7 +11,8 @@ const Welcome = () => {
 
   const onSubmit = useCallback((e) => {
     e.preventDefault();
-    console.log('navigate');
+    //  set name to Provider
+    navigate("/chat");
   }, []);
 
   const buttonStyle = {};
