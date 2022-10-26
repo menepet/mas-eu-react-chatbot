@@ -1,7 +1,10 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../providers/user";
 
 const Welcome = () => {
+  // Context is not made for frequent changes. U can use Redux instead...
+  const { setUserName } = useContext(UserContext);
   const navigate = useNavigate();
   const [name, setName] = useState("");
 
@@ -11,9 +14,10 @@ const Welcome = () => {
 
   const onSubmit = useCallback((e) => {
     e.preventDefault();
-    //  set name to Provider
-    navigate("/chat");
-  }, []);
+
+    setUserName(name);
+    navigate("/chat", { replace: true }); // replace route so as not to go back. Otherwise remove options obj
+  }, [navigate, setUserName, name]);  // no actual need adding setUserName & navigate
 
   const buttonStyle = {};
   buttonStyle.marginLeft = "auto";

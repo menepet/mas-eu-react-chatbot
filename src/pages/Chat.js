@@ -1,14 +1,13 @@
+import React, { useContext } from "react";
 import ChatBot from "react-simple-chatbot";
 import classes from "./Chat.module.css";
 import { ThemeProvider } from "styled-components";
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
+import { UserContext } from "../providers/user";
 
 //red, green, blue, purple, pink
-let botColor; 
+let botColor;
 let userColor;
-let userName = "User";
-console.log('name from welcome', )
-
 
 function assignRandomColorsToTwoPersons() {
   const colors = ['red', 'green', 'blue', 'purple', 'pink'];
@@ -38,7 +37,7 @@ const theme = {
   marginTop: "2rem"
 };
 
-const steps = [
+const getFirstSteps = (userName = 'kinkyUser') => [
   {
     id: "1",
     message: `Hello ${userName}!`,
@@ -52,9 +51,10 @@ const steps = [
 ];
 
 const Chat = () => {
-  const { state } = useLocation();
-  const { data } = state || {};
-  console.log({data});
+  const { userName } = useContext(UserContext);
+  // const { state } = useLocation();
+  // const { data } = state || {};
+  const steps = getFirstSteps(userName);
 
   return (
     <div className={classes.contain}>

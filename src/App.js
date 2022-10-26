@@ -5,10 +5,11 @@ import Welcome from "./pages/Welcome";
 import Chat from "./pages/Chat";
 import { Route, Routes, Navigate } from "react-router-dom";
 import MainHeader from "./components/MainHeader";
+import UserProvider from "./providers/user";
 
 function App() {
   return (
-    <div>
+    <UserProvider>
       <MainHeader />
       <main>
         <Routes>
@@ -18,7 +19,7 @@ function App() {
           <Route path="*" element={<Navigate to="/welcome" />} />
         </Routes>
       </main>
-    </div>
+    </UserProvider>
   );
 }
 
