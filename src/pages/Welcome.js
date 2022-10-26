@@ -1,24 +1,16 @@
-import React, { useState } from "react";
-import { Navigate } from "react-router-dom";
+import React, { useCallback, useState } from "react";
 
 const Welcome = () => {
   const [name, setName] = useState("");
 
-  const handleNameChange = (event) => {
-    setName(event.target.value);
-  };
+  const handleNameChange = useCallback(({target}) => {
+    setName(target.value);
+  }, []);
 
-  const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
-      console.log("enter key pressed");
-    }
-  };
-
-  function GreetUser(name) {
-    // function GreetUser(name) {
-    // <Navigate to="/chat" state={{ data: name }} />
-    <Navigate to="/chat" state={{ data: "name" }} />;
-  }
+  const onSubmit = useCallback((e) => {
+    e.preventDefault();
+    console.log('navigate');
+  }, []);
 
   const buttonStyle = {};
   buttonStyle.marginLeft = "auto";
@@ -29,7 +21,7 @@ const Welcome = () => {
     <div className="card">
       <div className="card-body">
         <h5 className="card-title">Greet User</h5>
-        <div className="card-text">
+        <form onSubmit={onSubmit} className="card-text">
           <input
             type="text"
             className="form-control"
@@ -40,12 +32,10 @@ const Welcome = () => {
           <button
             className="btn btn-primary"
             style={buttonStyle}
-            onClick={() => GreetUser(name)}
-            onKeyDown={handleKeyDown}
           >
             Submit Name
           </button>
-        </div>
+        </form>
       </div>
     </div>
   );
