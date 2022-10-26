@@ -1,6 +1,6 @@
 import "./App.css";
-import CardWithGreeting from "./CardWithGreeting";
-import FormGreet from "./FormGreet";
+// import CardWithGreeting from "./CardWithGreeting";
+// import FormGreet from "./FormGreet";
 import Welcome from "./pages/Welcome";
 import Chat from "./pages/Chat";
 import { Route, Routes, Navigate } from "react-router-dom";
