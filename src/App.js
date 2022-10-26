@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import CardWithGreeting from "./CardWithGreeting";
+import FormGreet from "./FormGreet";
+import Welcome from "./pages/Welcome";
+import Chat from "./pages/Chat";
+import { Route, Routes, Navigate } from "react-router-dom";
+import MainHeader from "./components/MainHeader";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <MainHeader />
+      <main>
+        <Routes>
+          <Route path="/" exact element={<Navigate to="/welcome" />} />
+          <Route path="/welcome" element={<Welcome />} />
+          <Route path="/chat" element={<Chat />} />
+          <Route path="*" element={<Navigate to="/welcome" />} />
+        </Routes>
+      </main>
     </div>
   );
 }
