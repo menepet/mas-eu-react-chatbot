@@ -3,9 +3,6 @@ import classes from "./Chat.module.css";
 import { ThemeProvider } from "styled-components";
 import { useLocation } from 'react-router-dom';
 
-const { state } = useLocation();
-const { data } = state || {};
-
 //red, green, blue, purple, pink
 let botColor; 
 let userColor;
@@ -55,6 +52,10 @@ const steps = [
 ];
 
 const Chat = () => {
+  const { state } = useLocation();
+  const { data } = state || {};
+  console.log({data});
+
   return (
     <div className={classes.contain}>
       <ThemeProvider theme={theme}>
